@@ -25,9 +25,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/htmlshot/index.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

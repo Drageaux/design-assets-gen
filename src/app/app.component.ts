@@ -21,13 +21,11 @@ export class AppComponent implements OnInit {
     this.pillShapesArray = this.pillShapeText.trim().split(',');
   }
 
-  screenshot() {
-    // var test1=imagify(d.body,(base64)=>{
-    //   $('body').append('<img src="'+base64+'"/>')
-    // });
-    //
-    screenshooter($('#pill-shape-gen-output')[0]).then(function (canvas) {
-      document.body.appendChild(canvas);
-    });
+  screenshot(selectorQuery: string) {
+    screenshooter($('#' + selectorQuery + '-preview')[0])
+      .then((canvas) => {
+        $('#' + selectorQuery + '-output').empty();
+        $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+      });
   }
 }
