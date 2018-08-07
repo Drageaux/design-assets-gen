@@ -1,0 +1,56 @@
+<div class="form-group">
+  <h4>Pill Shape Gen</h4>
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="pill-shape-color-select">Pill Color</label>
+    </div>
+    <select [(ngModel)]="pillShapeColor" id="pill-shape-color-select" class="form-control">
+      <option [value]="'primary'">primary</option>
+      <option [value]="'secondary'">secondary</option>
+      <option [value]="'success'">success</option>
+      <option [value]="'danger'">danger</option>
+      <option [value]="'warning'">warning</option>
+      <option [value]="'info'">info</option>
+      <option [value]="'light'">light</option>
+      <option [value]="'dark'">dark</option>
+      <option [value]="'salmon'">salmon (custom)</option>
+    </select>
+  </div>
+
+  <input type="text" class="form-control mb-2"
+         placeholder="(enter text here; split items with commas ',')"
+         [(ngModel)]="pillShapeText"
+         (keyup)="parsePillInput()"
+         #pillShapeInput>
+
+  <button type="button" class="btn btn-success mr-2"
+          [disabled]="pillShapeInput.value === ''"
+          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
+    Screenshot
+  </button>
+
+  <input id="pill-shape-split"
+         type="checkbox" aria-label="Checkbox for whether to split"
+         [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">
+  <label for="pill-shape-split">Split result into individual images?</label>
+</div>
+
+<div class="card mb-2" style="background:#aaa">
+  <div class="card-body">
+    <h6 class="card-title" style="color:white">Preview</h6>
+    <div id="pill-shape-gen-preview" class="gen-preview">
+        <span *ngFor="let ps of pillShapesArray; let i = index"
+              class="mr-2 badge badge-pill badge-{{pillShapeColor}}"
+              [class.mr-2]="i < pillShapesArray.length-1">
+          {{ps}}
+        </span>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="background:#aaa">
+  <div class="card-body">
+    <h6 class="card-title" style="color:white">Result</h6>
+    <div id="pill-shape-gen-output" class="gen-output"></div>
+  </div>
+</div>
