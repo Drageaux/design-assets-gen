@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   screenshot(selectorQuery: string, splitEach: boolean = false) {
     if (splitEach === true) {
+      // splitting each element to its own canvas
       $('#' + selectorQuery + '-output').empty();
       let elArray = $('#' + selectorQuery + '-preview span');
       elArray.each(index => {
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
           })
       });
     } else {
+      // grouping up all elements into 1 canvas
       screenshooter($('#' + selectorQuery + '-preview')[0])
         .then((canvas) => {
           $('#' + selectorQuery + '-output').empty();

@@ -27,9 +27,10 @@
   <div class="card mb-2" style="background:#aaa">
     <div class="card-body">
       <h6 class="card-title" style="color:white">Preview</h6>
-      <div id="pill-shape-gen-preview">
-        <span *ngFor="let ps of pillShapesArray"
-              class="mr-2 badge badge-pill badge-{{pillShapeColor}}">
+      <div id="pill-shape-gen-preview" class="gen-preview">
+        <span *ngFor="let ps of pillShapesArray; let i = index"
+              class="mr-2 badge badge-pill badge-{{pillShapeColor}}"
+              [class.mr-2]="i < pillShapesArray.length-1">
           {{ps}}
         </span>
       </div>
@@ -45,7 +46,7 @@
   <div class="card" style="background:#aaa">
     <div class="card-body">
       <h6 class="card-title" style="color:white">Result</h6>
-      <div id="pill-shape-gen-output"></div>
+      <div id="pill-shape-gen-output" class="gen-output"></div>
     </div>
   </div>
   <hr>
