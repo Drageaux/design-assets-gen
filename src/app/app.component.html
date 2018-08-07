@@ -2,12 +2,7 @@
 
   <div class="form-group">
     <h4>Pill Shape Gen</h4>
-    <input type="text" class="form-control"
-           placeholder="(enter text here)"
-           [(ngModel)]="pillShapeText"
-           (keyup)="parsePillInput()"
-           #pillShapeInput>
-    <div class="input-group mt-2">
+    <div class="input-group mb-2">
       <div class="input-group-prepend">
         <label class="input-group-text" for="pill-shape-color-select">Pill Color</label>
       </div>
@@ -23,7 +18,25 @@
         <option [value]="'salmon'">salmon (custom)</option>
       </select>
     </div>
+
+    <input type="text" class="form-control mb-2"
+           placeholder="(enter text here)"
+           [(ngModel)]="pillShapeText"
+           (keyup)="parsePillInput()"
+           #pillShapeInput>
+
+    <button type="button" class="btn btn-success mr-2"
+            [disabled]="pillShapeInput.value === ''"
+            (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
+      Screenshot
+    </button>
+
+    <input id="pill-shape-split"
+           type="checkbox" aria-label="Checkbox for whether to split"
+           [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">&nbsp;
+    <label for="pill-shape-split">Split result into individual images?</label>
   </div>
+
   <div class="card mb-2" style="background:#aaa">
     <div class="card-body">
       <h6 class="card-title" style="color:white">Preview</h6>
@@ -36,16 +49,6 @@
       </div>
     </div>
   </div>
-
-  <button type="button" class="btn btn-success mb-2 mr-2"
-          [disabled]="pillShapeInput.value === ''"
-          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
-    Screenshot
-  </button>
-  <input id="pill-shape-split"
-    type="checkbox" aria-label="Checkbox for whether to split"
-         [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">
-  <label for="pill-shape-split">Split result into individual images?</label>
 
   <div class="card" style="background:#aaa">
     <div class="card-body">
