@@ -1,2 +1,33 @@
-<h4>Pill Shape Gen</h4>
-<input type="text" class="con">
+<div class="container">
+
+  <div class="form-group">
+    <h4>Pill Shape Gen</h4>
+    <input type="text" class="form-control"
+           placeholder="(enter text here)"
+           [(ngModel)]="pillShapeText"
+           (keyup)="parsePillInput()">
+    <div class="input-group mt-2">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="pill-shape-color-select">Pill Color</label>
+      </div>
+      <select [(ngModel)]="pillShapeColor" id="pill-shape-color-select" class="form-control">
+        <option [value]="'primary'">primary</option>
+        <option [value]="'secondary'">secondary</option>
+        <option [value]="'success'">success</option>
+        <option [value]="'danger'">danger</option>
+        <option [value]="'warning'">warning</option>
+        <option [value]="'info'">info</option>
+        <option [value]="'light'">light</option>
+        <option [value]="'dark'">dark</option>
+        <option [value]="'salmon'">salmon (custom)</option>
+      </select>
+    </div>
+    <div id="pill-shape-gen-output">
+    <span *ngFor="let ps of pillShapesArray"
+          class="mr-2 badge badge-pill badge-{{pillShapeColor}}">
+      {{ps}}
+    </span>
+    </div>
+  </div>
+
+</div>
