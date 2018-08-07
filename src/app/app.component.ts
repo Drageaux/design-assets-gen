@@ -21,11 +21,23 @@ export class AppComponent implements OnInit {
     this.pillShapesArray = this.pillShapeText.trim().split(',');
   }
 
-  screenshot(selectorQuery: string) {
-    screenshooter($('#' + selectorQuery + '-preview')[0])
-      .then((canvas) => {
-        $('#' + selectorQuery + '-output').empty();
-        $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+  screenshot(selectorQuery: string, splitEach: boolean = false) {
+    if (splitEach === true) {
+      $('#' + selectorQuery + '-output').empty();
+      let elArray = $('#' + selectorQuery + '-preview span');
+      elArray.each(index => {
+        screenshooter(elArray[index])
+          .then((canvas) => {
+            canvas.classList.add('mr-2');
+            $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+          })
       });
+    } else {
+      screenshooter($('#' + selectorQuery + '-preview')[0])
+        .then((canvas) => {
+          $('#' + selectorQuery + '-output').empty();
+          $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+        });
+    }
   }
 }
