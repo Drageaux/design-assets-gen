@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   pillShapeText = '';
   pillShapesArray: string[] = [];
   pillShapeColor = 'salmon';
+  pillShapeSplit = false;
 
   ngOnInit(): void {
   }

@@ -37,11 +37,15 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-success mb-2"
+  <button type="button" class="btn btn-success mb-2 mr-2"
           [disabled]="pillShapeInput.value === ''"
-          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen'): false">
+          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
     Screenshot
   </button>
+  <input id="pill-shape-split"
+    type="checkbox" aria-label="Checkbox for whether to split"
+         [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">
+  <label for="pill-shape-split">Split result into individual images?</label>
 
   <div class="card" style="background:#aaa">
     <div class="card-body">
