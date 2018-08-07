@@ -23,11 +23,13 @@
       </select>
     </div>
     <div id="pill-shape-gen-output">
-    <span *ngFor="let ps of pillShapesArray"
-          class="mr-2 badge badge-pill badge-{{pillShapeColor}}">
-      {{ps}}
+      <h5>Preview</h5>
+      <span *ngFor="let ps of pillShapesArray"
+            class="mr-2 badge badge-pill badge-{{pillShapeColor}}">
+        {{ps}}
     </span>
     </div>
+    <button type="button" class="btn" (click)="screenshot()">Screenshot</button>
   </div>
 
 </div>
