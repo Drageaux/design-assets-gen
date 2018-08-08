@@ -1,10 +1,20 @@
-<div class="form-group">
+<form (ngSubmit)="false" class="form-group clearfix">
   <h4>Pill Shape Gen</h4>
+  <input type="text" class="form-control mb-2" name="pill-shape-text"
+         placeholder="(enter text here; split items with commas ',')"
+         [(ngModel)]="pillShapeText"
+         (keyup)="parsePillInput()"
+         autocomplete="on"
+         #pillShapeInput>
+
   <div class="input-group mb-2">
     <div class="input-group-prepend">
       <label class="input-group-text" for="pill-shape-color-select">Select pill color</label>
     </div>
-    <select [(ngModel)]="pillShapeColor" id="pill-shape-color-select" class="form-control">
+    <select id="pill-shape-color-select"
+            class="form-control"
+            name="pill-shape-color"
+            [(ngModel)]="pillShapeColor">
       <option [value]="'primary'">primary</option>
       <option [value]="'secondary'">secondary</option>
       <option [value]="'success'">success</option>
@@ -17,40 +27,53 @@
     </select>
   </div>
 
-  <input type="text" class="form-control mb-2"
-         placeholder="(enter text here; split items with commas ',')"
-         [(ngModel)]="pillShapeText"
-         (keyup)="parsePillInput()"
-         #pillShapeInput>
-
-  <button type="button" class="btn btn-success mr-2"
-          [disabled]="pillShapeInput.value === ''"
-          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
-    Screenshot
-  </button>
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="pill-shape-size">Select pill size (0.01-2.00)</label>
+    </div>
+    <input type="number" id="pill-shape-size"
+           class="form-control"
+           step="0.01" min="0.01" max="3"
+           name="pill-shape-size"
+           [(ngModel)]="pillShapeSize">
+  </div>
 
   <input id="pill-shape-split"
          type="checkbox" aria-label="Checkbox for whether to split"
          [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">
   <label for="pill-shape-split">Split result into individual images?</label>
-</div>
 
+  <button type="submit" class="btn btn-success float-right mr-2"
+          [disabled]="pillShapeInput.value === ''"
+          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
+    Screenshot
+  </button>
+  <br>
+</form>
+
+<!--Preview-->
 <div class="card mb-2" style="background:#aaa">
   <div class="card-body">
     <h6 class="card-title" style="color:white">Preview</h6>
-    <div id="pill-shape-gen-preview" class="gen-preview">
+    <!--need to keep style constant for .gen-preview and .gen-output-->
+    <div id="pill-shape-gen-preview" class="gen-preview"
+         [ngStyle]="{'zoom':pillShapeSize}">
         <span *ngFor="let ps of pillShapesArray; let i = index"
               class="mr-2 badge badge-pill badge-{{pillShapeColor}}"
-              [class.mr-2]="i < pillShapesArray.length-1">
+              [class.mr-2]="i < pillShapesArray.length-1"
+              style="font-weight:normal">
           {{ps}}
         </span>
     </div>
   </div>
 </div>
 
+<!--Result-->
 <div class="card" style="background:#aaa">
   <div class="card-body">
     <h6 class="card-title" style="color:white">Result</h6>
-    <div id="pill-shape-gen-output" class="gen-output"></div>
+    <!--need to keep style constant for .gen-preview and .gen-output-->
+    <div id="pill-shape-gen-output" class="gen-output"
+         [ngStyle]="{'zoom':pillShapeSize}"></div>
   </div>
 </div>

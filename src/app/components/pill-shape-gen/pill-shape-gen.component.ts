@@ -13,6 +13,7 @@ export class PillShapeGenComponent implements OnInit {
   pillShapeText = '';
   pillShapesArray: string[] = [];
   pillShapeColor = 'salmon';
+  pillShapeSize = 1.00;
   pillShapeSplit = false;
 
   ngOnInit(): void {
@@ -23,23 +24,25 @@ export class PillShapeGenComponent implements OnInit {
   }
 
   screenshot(selectorQuery: string, splitEach: boolean = false) {
+    let $output = $('#' + selectorQuery + '-output');
+
     if (splitEach === true) {
       // splitting each element to its own canvas
-      $('#' + selectorQuery + '-output').empty();
+      $output.empty();
       let elArray = $('#' + selectorQuery + '-preview span');
       elArray.each(index => {
         screenshooter(elArray[index])
           .then((canvas) => {
             canvas.classList.add('mr-2');
-            $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+            $output[0].appendChild(canvas);
           })
       });
     } else {
       // grouping up all elements into 1 canvas
       screenshooter($('#' + selectorQuery + '-preview')[0])
         .then((canvas) => {
-          $('#' + selectorQuery + '-output').empty();
-          $('#' + selectorQuery + '-output')[0].appendChild(canvas);
+          $output.empty();
+          $output[0].appendChild(canvas);
         });
     }
   }
