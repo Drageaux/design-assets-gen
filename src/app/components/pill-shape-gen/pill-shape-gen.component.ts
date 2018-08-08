@@ -23,15 +23,24 @@ export class PillShapeGenComponent implements OnInit {
     this.pillShapesArray = this.pillShapeText.trim().split(',');
   }
 
-  screenshot(selectorQuery: string, splitEach: boolean = false) {
+  screenshot(selectorQuery: string, splitEach: boolean = false, pillShapeGenPreview) {
+    console.log(pillShapeGenPreview.offsetHeight);
+
     let $output = $('#' + selectorQuery + '-output');
+    const options = {
+      backgroundColor: null,
+      display: 'none',
+      height: pillShapeGenPreview.offsetHeight,
+      width: pillShapeGenPreview.offsetWidth,
+      scale: this.pillShapeSize
+    };
 
     if (splitEach === true) {
       // splitting each element to its own canvas
       $output.empty();
       let elArray = $('#' + selectorQuery + '-preview span');
       elArray.each(index => {
-        screenshooter(elArray[index])
+        screenshooter(elArray[index], options)
           .then((canvas) => {
             canvas.classList.add('mr-2');
             $output[0].appendChild(canvas);
@@ -39,7 +48,7 @@ export class PillShapeGenComponent implements OnInit {
       });
     } else {
       // grouping up all elements into 1 canvas
-      screenshooter($('#' + selectorQuery + '-preview')[0])
+      screenshooter($('#' + selectorQuery + '-preview')[0], options)
         .then((canvas) => {
           $output.empty();
           $output[0].appendChild(canvas);

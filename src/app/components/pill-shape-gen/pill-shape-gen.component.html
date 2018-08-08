@@ -29,7 +29,7 @@
 
   <div class="input-group mb-2">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="pill-shape-size">Select pill size (0.01-2.00)</label>
+      <label class="input-group-text" for="pill-shape-size">Select pill size (0.01-3.00)</label>
     </div>
     <input type="number" id="pill-shape-size"
            class="form-control"
@@ -45,7 +45,7 @@
 
   <button type="submit" class="btn btn-success float-right mr-2"
           [disabled]="pillShapeInput.value === ''"
-          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit): false">
+          (click)="pillShapeInput.value !== '' ? screenshot('pill-shape-gen', pillShapeSplit, pillShapeGenPreview) : false">
     Screenshot
   </button>
   <br>
@@ -57,7 +57,7 @@
     <h6 class="card-title" style="color:white">Preview</h6>
     <!--need to keep style constant for .gen-preview and .gen-output-->
     <div id="pill-shape-gen-preview" class="gen-preview"
-         [ngStyle]="{'zoom':pillShapeSize}">
+         [ngStyle]="{'zoom':pillShapeSize}" #pillShapeGenPreview>
         <span *ngFor="let ps of pillShapesArray; let i = index"
               class="mr-2 badge badge-pill badge-{{pillShapeColor}}"
               [class.mr-2]="i < pillShapesArray.length-1"
