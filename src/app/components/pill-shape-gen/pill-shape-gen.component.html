@@ -60,11 +60,11 @@
     <!--need to keep style constant for .gen-preview and .gen-output-->
     <div id="progress-bar-gen-preview" class="gen-preview"
          [ngStyle]="{'zoom':progressBarSize}" #progressBarGenPreview>
-        <span *ngFor="let ps of progressBarsArray; let i = index"
+        <span *ngFor="let bar of progressBarsArray; let i = index"
               class="mr-2 badge badge-pill badge-{{progressBarColor}}"
               [class.mr-2]="i < progressBarsArray.length-1"
               style="font-weight:normal">
-          {{ps}}
+          {{bar}}
         </span>
     </div>
   </div>
