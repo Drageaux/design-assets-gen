@@ -1,21 +1,21 @@
-<form #pillForm="ngForm" (ngSubmit)="false" class="form-group clearfix">
-  <h4>Pill Shape Gen</h4>
-  <input type="text" class="form-control mb-2" name="pill-shape-text"
+<form #barForm="ngForm" (ngSubmit)="false" class="form-group clearfix">
+  <h4>Progress Bar Gen</h4>
+  <input type="text" class="form-control mb-2" name="progress-bar-text"
          placeholder="(enter text here; split items with commas ',')"
-         [(ngModel)]="pillShapeText"
+         [(ngModel)]="progressBarText"
          (keyup)="parsePillInput()"
          autocomplete="on"
          required
-         #pillShapeInput>
+         #progressBarInput>
 
   <div class="input-group mb-2">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="pill-shape-color-select">Select pill color</label>
+      <label class="input-group-text" for="progress-bar-color-select">Select progress bar color</label>
     </div>
-    <select id="pill-shape-color-select"
+    <select id="progress-bar-color-select"
             class="form-control"
-            name="pill-shape-color"
-            [(ngModel)]="pillShapeColor">
+            name="progress-bar-color"
+            [(ngModel)]="progressBarColor">
       <option [value]="'primary'">primary</option>
       <option [value]="'secondary'">secondary</option>
       <option [value]="'success'">success</option>
@@ -30,24 +30,24 @@
 
   <div class="input-group mb-2">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="pill-shape-size">Select pill size (0.01-5.00)</label>
+      <label class="input-group-text" for="progress-bar-size">Select progress bar size (0.01-5.00)</label>
     </div>
-    <input type="number" id="pill-shape-size"
+    <input type="number" id="progress-bar-size"
            class="form-control"
            step="0.01" min="0.01" max="5"
-           name="pill-shape-size"
-           [(ngModel)]="pillShapeSize"
-           #pillSizeInput>
+           name="progress-bar-size"
+           [(ngModel)]="progressBarSize"
+           #progress barSizeInput>
   </div>
 
-  <input id="pill-shape-split"
+  <input id="progress-bar-split"
          type="checkbox" aria-label="Checkbox for whether to split"
-         [checked]="pillShapeSplit" (change)="pillShapeSplit = !pillShapeSplit">
-  <label for="pill-shape-split">Split result into individual images?</label>
+         [checked]="progressBarSplit" (change)="progressBarSplit = !progressBarSplit">
+  <label for="progress-bar-split">Split result into individual images?</label>
 
   <button type="submit" class="btn btn-success float-right mr-2"
-          [disabled]="!pillForm.valid"
-          (click)="pillForm.valid ? screenshot('pill-shape-gen', pillShapeSplit, pillShapeGenPreview) : false">
+          [disabled]="!barForm.valid"
+          (click)="barForm.valid ? screenshot('progress-bar-gen', progressBarSplit, progressBarGenPreview) : false">
     Screenshot
   </button>
   <br>
@@ -56,13 +56,13 @@
 <!--Preview-->
 <div class="card mb-2" style="">
   <div class="card-body">
-    <h6 class="card-title" style="color:#1d2124">Preview (color: {{pillShapeColor}})</h6>
+    <h6 class="card-title" style="color:#1d2124">Preview (color: {{progressBarColor}})</h6>
     <!--need to keep style constant for .gen-preview and .gen-output-->
-    <div id="pill-shape-gen-preview" class="gen-preview"
-         [ngStyle]="{'zoom':pillShapeSize}" #pillShapeGenPreview>
-        <span *ngFor="let ps of pillShapesArray; let i = index"
-              class="mr-2 badge badge-pill badge-{{pillShapeColor}}"
-              [class.mr-2]="i < pillShapesArray.length-1"
+    <div id="progress-bar-gen-preview" class="gen-preview"
+         [ngStyle]="{'zoom':progressBarSize}" #progressBarGenPreview>
+        <span *ngFor="let ps of progressBarsArray; let i = index"
+              class="mr-2 badge badge-pill badge-{{progressBarColor}}"
+              [class.mr-2]="i < progressBarsArray.length-1"
               style="font-weight:normal">
           {{ps}}
         </span>
@@ -74,6 +74,6 @@
 <div class="card" style="">
   <div class="card-body">
     <h6 class="card-title" style="color:#1d2124">Result</h6>
-    <div id="pill-shape-gen-output" class="gen-output"></div>
+    <div id="progress-bar-gen-output" class="gen-output"></div>
   </div>
 </div>

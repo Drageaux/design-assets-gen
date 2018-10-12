@@ -4,11 +4,13 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import { PillShapeGenComponent } from './components/pill-shape-gen/pill-shape-gen.component';
+import { ProgressBarGenComponent } from './components/progress-bar-gen/progress-bar-gen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PillShapeGenComponent
+    PillShapeGenComponent,
+    ProgressBarGenComponent
   ],
   imports: [
     BrowserModule,
