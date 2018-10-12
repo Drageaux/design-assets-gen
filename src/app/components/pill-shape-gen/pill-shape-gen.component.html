@@ -54,9 +54,9 @@
 </form>
 
 <!--Preview-->
-<div class="card mb-2" style="background:#aaa">
+<div class="card mb-2" style="">
   <div class="card-body">
-    <h6 class="card-title" style="color:white">Preview</h6>
+    <h6 class="card-title" style="color:#1d2124">Preview (color: {{pillShapeColor}})</h6>
     <!--need to keep style constant for .gen-preview and .gen-output-->
     <div id="pill-shape-gen-preview" class="gen-preview"
          [ngStyle]="{'zoom':pillShapeSize}" #pillShapeGenPreview>
@@ -71,9 +71,9 @@
 </div>
 
 <!--Result-->
-<div class="card" style="background:#aaa">
+<div class="card" style="">
   <div class="card-body">
-    <h6 class="card-title" style="color:white">Result</h6>
+    <h6 class="card-title" style="color:#1d2124">Result</h6>
     <div id="pill-shape-gen-output" class="gen-output"></div>
   </div>
 </div>
