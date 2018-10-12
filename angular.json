@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "resume-comp-gen": {
+    "design-assets-gen": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/resume-comp-gen",
+            "outputPath": "dist/design-assets-gen",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,11 +50,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "resume-comp-gen:build"
+            "browserTarget": "design-assets-gen:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "resume-comp-gen:build:production"
+              "browserTarget": "design-assets-gen:build:production"
             }
           }
         },
@@ -95,7 +95,7 @@
         }
       }
     },
-    "resume-comp-gen-e2e": {
+    "design-assets-gen-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "resume-comp-gen:serve"
+            "devServerTarget": "design-assets-gen:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "resume-comp-gen:serve:production"
+              "devServerTarget": "design-assets-gen:serve:production"
             }
           }
         },
@@ -123,7 +123,7 @@
       }
     }
   },
-  "defaultProject": "resume-comp-gen",
+  "defaultProject": "design-assets-gen",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
